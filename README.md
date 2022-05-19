@@ -31,7 +31,9 @@ sendmail by flask api
 ## example using httpie
 1. simple use 
 ```
-http -f POST http{s}://{ip or hostname}:{port}/send receiver="xxx@outlook.com,xxx@gmail.com"
+http -f POST http{s}://{ip or hostname}:{port}/send receiver="xxx@outlook.com,xxx@gmail.com" \
+                                                    subject="hello subject" \
+                                                    body="hello body"
 ```
 2. cc , bcc and send a attachment
 ```
