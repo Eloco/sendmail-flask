@@ -55,4 +55,4 @@ Time flies, the way I do without enabling less secured app is making a password 
 - Step one: enable Google [2FA](https://myaccount.google.com/signinoptions/two-step-verification/enroll-welcome)
 - Step two: create an Google [app-specific password](https://myaccount.google.com/apppasswords)
 
-After this, put the sixteen digits password to the settings and reload the app, enjoy!
+After this, use the sixteen digits password as mail SMTP password, enjoy!
