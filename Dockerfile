@@ -1,6 +1,6 @@
 ARG FUNCTION_DIR="/function"
 
-FROM mcr.microsoft.com/playwright/python:latest
+FROM python:3.9
 
 ARG FUNCTION_DIR
 
