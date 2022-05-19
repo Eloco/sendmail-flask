@@ -23,7 +23,7 @@ sendmail by flask api
 >optional
 ```
 - subject     , default = "default subject"      (mail subject)
-- message     , default = "hello world [Default]"(mail body)
+- message     , default = "hello world [Default]"(mail body) [Base64 or plain text]
 - attach_link , default = ""                     (only one attachment in a link) 
 - Bcc         , default = ""                     (mail blind carbon copy address)
 - cc          , default = ""                     (mail carbon copy address)
