@@ -37,16 +37,17 @@ def send_mail():
     mail_pass      = request.form.get('pass'        , default = default_mail_pass       ).strip()
     mail_server    = request.form.get('server'      , default = default_mail_server     ).strip()
     mail_port      = request.form.get('port'        , default = default_mail_port       )
-    receiver_email = request.form.get('receiver'    , default = "None"                  ).strip()
+    receiver_email = request.form.get('receiver'    , default = ""                      ).strip()
     subject        = request.form.get('subject'     , default = "default subject"       ).strip()
     body           = request.form.get('message'     , default = "hello world [Default]" ).strip()
-    attach_link    = request.form.get('attach_link' , default = "None"                  ).strip()
-    Bcc            = request.form.get('Bcc'         , default = "None"                  ).strip()
+    attach_link    = request.form.get('attach_link' , default = ""                      ).strip()
+    Bcc            = request.form.get('Bcc'         , default = ""                      ).strip()
+    cc             = request.form.get('cc'          , default = ""                      ).strip()
 
 
 
     # init mesage and body
-    if receiver_email == "None":
+    if receiver_email.strip() == "":
         status_code = 400
         return jsonify({
                         'code': status_code,
@@ -59,7 +60,16 @@ def send_mail():
     message["To"]      = ",".join(receiver_email)
     message["Subject"] = subject
 
-    if Bcc != "None": message["Bcc"]= Bcc  # Recommended for mass emails
+    print(cc)
+    cc = [ r.strip() for r in cc.split(",") ]
+    if cc != ['']:
+        message["cc"] = ",".join(cc)
+    Bcc = [ r.strip() for r in Bcc.split(",") ]
+    if Bcc != ['']:
+        message["Bcc"]= ",".join(Bcc)
+
+    receiver_email+=cc
+    receiver_email+=Bcc
 
     try:
         body=base64.b64decode(body).decode('utf-8')
