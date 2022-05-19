@@ -11,20 +11,23 @@ sendmail by flask api
 
 ## POST vaule:
 >necessary
+```
 - receiver    , default = ""                     (receiver mail address)
-
-- mail        , default = default_mail_user      (sender mail address)
-- pass        , default = default_mail_pass      (sender mail pass)
-- server      , default = default_mail_server    (sender mail server)
-- port        , default = default_mail_port      (sender mail port)
-
+```
+```
+- mail        , default = {env.MAIL_USER}      (sender mail address)
+- pass        , default = {env.MAIL_PASS}      (sender mail pass)
+- server      , default = {env.MAIL_SERVER}    (sender mail server)
+- port        , default = {env.MAIL_PORT}      (sender mail port)
+```
 >optional
+```
 - subject     , default = "default subject"      (mail subject)
 - message     , default = "hello world [Default]"(mail body)
 - attach_link , default = ""                     (only one attachment in a link) 
 - Bcc         , default = ""                     (mail blind carbon copy address)
 - cc          , default = ""                     (mail carbon copy address)
-
+```
 ## example 
 1. simple use 
 ```
