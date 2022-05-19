@@ -28,7 +28,7 @@ sendmail by flask api
 - Bcc         , default = ""                     (mail blind carbon copy address)
 - cc          , default = ""                     (mail carbon copy address)
 ```
-## example 
+## example using httpie
 1. simple use 
 ```
 http -f POST http{s}://{ip or hostname}:{port}/send receiver="xxx@outlook.com,xxx@gmail.com"
