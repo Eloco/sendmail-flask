@@ -58,3 +58,9 @@ Time flies, the way I do without enabling less secured app is making a password 
 - Step two: create an Google [app-specific password](https://myaccount.google.com/apppasswords)
 
 After this, use the sixteen digits password as mail SMTP password, enjoy!
+
+## funny (mail to sms)
+> only support us and ca phone number
+```
+mailto: +1xxx@sendemailtotext.com
+```
