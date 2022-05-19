@@ -54,4 +54,5 @@ http -f POST http{s}://{ip or hostname}:{port}/send receiver="xxx@outlook.com,xx
 Time flies, the way I do without enabling less secured app is making a password for specific app
 - Step one: enable Google [2FA](https://myaccount.google.com/signinoptions/two-step-verification/enroll-welcome)
 - Step two: create an Google [app-specific password](https://myaccount.google.com/apppasswords)
+
 After this, put the sixteen digits password to the settings and reload the app, enjoy!
