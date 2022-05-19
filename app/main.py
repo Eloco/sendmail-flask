@@ -79,7 +79,7 @@ def send_mail():
 
     # insert attachment
     try:
-        if attach_link != "None":
+        if attach_link.strip() != "":
             attach_name    = attach_link.split('/')[-1]
             attach_name    = request.form.get('attach_name', default = attach_name).strip()
             r = requests.get(attach_link)
