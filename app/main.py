@@ -22,9 +22,10 @@ app = Flask(__name__)
 def hello_world():
     return "Hello World!"
 
-default_mail_user        =os.environ.get('MAIL_USER') or "None"
-default_mail_pass        =os.environ.get('MAIL_PASS') or "None"
-
+default_mail_user        =os.environ.get('MAIL_USER'  ) or "None"
+default_mail_pass        =os.environ.get('MAIL_PASS'  ) or "None"
+default_mail_server      =os.environ.get('MAIL_SERVER') or "smtp.gmail.com"
+default_mail_port        =os.environ.get('MAIL_PORT'  ) or 465
 
 @timeout(60*5) # 5 minutes
 @app.route('/send', methods=['POST'])
@@ -34,8 +35,8 @@ def send_mail():
     result         = "success"
     mail_user      = request.form.get('mail'        , default = default_mail_user       ).strip()
     mail_pass      = request.form.get('pass'        , default = default_mail_pass       ).strip()
-    mail_server    = request.form.get('server'      , default = "smtp.gmail.com"        ).strip()
-    mail_port      = request.form.get('port'        , default = 465                     )
+    mail_server    = request.form.get('server'      , default = default_mail_server     ).strip()
+    mail_port      = request.form.get('port'        , default = default_mail_port       )
     receiver_email = request.form.get('receiver'    , default = "None"                  ).strip()
     subject        = request.form.get('subject'     , default = "default subject"       ).strip()
     body           = request.form.get('message'     , default = "hello world [Default]" ).strip()
@@ -85,9 +86,17 @@ def send_mail():
 
     # send mail
     context = ssl.create_default_context()
-    with smtplib.SMTP_SSL(mail_server, mail_port, context=context) as server:
-        server.login(mail_user, mail_pass)
-        server.sendmail(mail_user, receiver_email, message.as_string())
+    try:
+        mail_port = int(mail_port)
+        with smtplib.SMTP_SSL(mail_server, mail_port, context=context) as server:
+            server.login(mail_user, mail_pass)
+            server.sendmail(mail_user, receiver_email, message.as_string())
+    except Exception as e:
+        status_code = 500
+        return jsonify({
+                        'code'   : status_code,
+                        'result' : "send mail error : " + str(e),
+                      })
 
     return jsonify({
                     'code': status_code,
