@@ -55,7 +55,8 @@ def send_mail():
 
     message            = MIMEMultipart()
     message["From"]    = mail_user
-    message["To"]      = receiver_email
+    receiver_email     = [ r.strip() for r in receiver_email.split(",") ]
+    message["To"]      = ",".join(receiver_email)
     message["Subject"] = subject
 
     if Bcc != "None": message["Bcc"]= Bcc  # Recommended for mass emails
