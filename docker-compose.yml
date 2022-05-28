@@ -4,7 +4,7 @@ services:
   sendmail:
     build: .
     ports:
-      - 8080:8080
+      - 80:8080
     environment:
        - MAIL_USER=$MAIL_USER
        - MAIL_PASS=$MAIL_PASS
